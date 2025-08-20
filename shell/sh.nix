@@ -18,7 +18,12 @@ in {
 
     home-manager.enable = true;
 
-    fish.enable = true;
+    fish = {
+      enable = true;
+      interactiveShellInit = ''
+        set -g fish_greeting
+      '';
+    };
   };
 
   home.file = { 
