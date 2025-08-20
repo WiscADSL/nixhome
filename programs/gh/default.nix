@@ -8,8 +8,6 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "aoli-al";
-    userEmail = "aoli.al@hotmail.com";
     extraConfig = {
       pull.rebase = false;
     };
@@ -38,10 +36,6 @@
   programs.jujutsu = {
     enable = true;
     settings = {
-      user = {
-        name = "aoli-al";
-        email = "aoli.al@hotmail.com";
-      };
       revset-aliases = {
         "immutable_heads()" = "present(trunk()) | tags()";
       };

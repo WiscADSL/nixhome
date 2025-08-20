@@ -32,4 +32,20 @@
       preset = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty";
     };
   };
+
+  programs.git = {
+    enable = true;
+    userName = "XiangpengHao";
+    userEmail = "me@xiangpeng.systems";
+  };
+
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        name = "XiangpengHao";
+        email = "me@xiangpeng.systems";
+      };
+    };
+  };
 }
