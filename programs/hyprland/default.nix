@@ -131,8 +131,5 @@
         "atuin daemon&"
       ];
     };
-    extraConfig = "
-      monitor=,preferred,auto,1.25
-    ";
   };
 }

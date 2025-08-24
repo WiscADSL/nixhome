@@ -3,14 +3,14 @@
     username = "aoli";
     homeDirectory =
       if (pkgs.stdenv.isDarwin)
-      then "/Users/aoli"
+        then "/Users/aoli"
       else "/home/aoli";
   };
   home.packages = with pkgs; [
-      jetbrains.idea-ultimate
+    jetbrains.idea-ultimate
   ] ++ lib.optionals (pkgs.stdenv.isLinux) [
       jetbrains.idea-community-bin
-  ];
+    ];
 
   programs.git = {
     enable = true;
@@ -27,4 +27,7 @@
       };
     };
   };
+  wayland.windowManager.hyprland.extraConfig = "
+      monitor=DP-6, 3840x2160@240, 0x0, 1.5
+    ";
 }
