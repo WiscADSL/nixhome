@@ -86,6 +86,16 @@
       };
 
       homeConfigurations = {
+        "aoli@ruby" = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsX86;
+          modules = [
+            ./programs/accounts/aoli.nix
+            ./programs/hosts/ruby.nix
+            ./home.nix
+            nixvim.homeModules.nixvim
+            catppuccin.homeModules.catppuccin
+          ];
+        };
         "aoli@linux" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsX86;
           modules = [
