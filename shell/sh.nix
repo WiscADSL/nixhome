@@ -27,7 +27,6 @@ in {
   };
 
   home.file = { 
-    ".byobu/.tmux.conf" = symlink "dotfiles/tmux.conf";
     ".config/jjui/config.toml" = symlink "dotfiles/jjui.toml"; 
   };
 }
