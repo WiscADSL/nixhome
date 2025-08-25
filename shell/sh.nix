@@ -1,11 +1,5 @@
-{ pkgs, config, ... }:
-let
-  symlink = subpath: {
-    source = config.lib.file.mkOutOfStoreSymlink
-      "${config.home.homeDirectory}/repos/env/${subpath}";
-    force = true;
-  };
-in {
+{ ... }:
+{
   programs = {
     bat.enable = true;
 
@@ -26,7 +20,18 @@ in {
     };
   };
 
-  home.file = { 
-    ".config/jjui/config.toml" = symlink "dotfiles/jjui.toml"; 
+  home.file = {
+    ".byobu/.tmux.conf" = {
+      source = ../dotfiles/tmux.conf;
+      force = true;
+    };
+    ".config/jjui/config.toml" = {
+      source = ../dotfiles/jjui.toml;
+      force = true;
+    };
+    ".local/share/fcitx5/rime/default.custom.yaml" = {
+      source = ../dotfiles/rime.yaml;
+      force = true;
+    };
   };
 }
