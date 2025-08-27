@@ -96,10 +96,11 @@
             catppuccin.homeModules.catppuccin
           ];
         };
-        "aoli@linux" = home-manager.lib.homeManagerConfiguration {
+        "aoli@octal" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsX86;
           modules = [
             ./programs/accounts/aoli.nix
+            ./programs/hosts/octal.nix
             ./home.nix
             nixvim.homeModules.nixvim
             catppuccin.homeModules.catppuccin
