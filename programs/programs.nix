@@ -14,6 +14,7 @@
 
   home.packages =
     [
+      pkgs.aonsoku
       pkgs.claude-code
       pkgs.nix-index
       pkgs.killall
