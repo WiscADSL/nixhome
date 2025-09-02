@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }: {
+{ pkgs, lib, inputs, config, ... }: {
   imports = [
     ./bind.nix
     ./waybar.nix
@@ -128,6 +128,7 @@
         "blueman-applet"
         "nm-applet --indicator"
         "hyprctl setcursor catppuccin-latte-red-cursors 30"
+      ] ++ lib.optionals (config.programs.atuin.enable or false) [
         "atuin daemon&"
       ];
     };

@@ -1,4 +1,6 @@
 { lib, pkgs, ... }: {
+  # Explicitly enable Atuin for aoli
+  programs.atuin.enable = lib.mkDefault true;
   home = {
     username = "aoli";
     homeDirectory =
