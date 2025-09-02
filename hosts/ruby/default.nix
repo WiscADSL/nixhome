@@ -25,4 +25,8 @@
       ];
     };
   };
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.cups-filters pkgs.gutenprint ];
+  };
 }
