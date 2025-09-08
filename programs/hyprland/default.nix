@@ -22,7 +22,9 @@
 
   xdg = {
     enable = pkgs.stdenv.isLinux;
-    configFile."mimeapps.list".force = true;
+    configFile."mimeapps.list" = lib.mkIf pkgs.stdenv.isLinux {
+      force = true;
+    };
     mime.enable = pkgs.stdenv.isLinux;
     mimeApps = {
       enable = pkgs.stdenv.isLinux;
