@@ -4,6 +4,7 @@
     ./waybar.nix
     ./kitty.nix
     ./hyprpaper.nix
+    ./hyprshell.nix
   ];
   home.packages = with pkgs; [
     kitty
@@ -130,6 +131,7 @@
         "blueman-applet"
         "nm-applet --indicator"
         "hyprctl setcursor catppuccin-latte-red-cursors 30"
+        "hyprshell run"
       ] ++ lib.optionals (config.programs.atuin.enable or false) [
         "atuin daemon&"
       ];
