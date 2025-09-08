@@ -94,6 +94,7 @@
           modules = [
             ./programs/accounts/aoli.nix
             ./programs/hosts/ruby.nix
+            ./programs/hyprland
             ./home.nix
             nixvim.homeModules.nixvim
             catppuccin.homeModules.catppuccin
@@ -105,6 +106,7 @@
           modules = [
             ./programs/accounts/aoli.nix
             ./programs/hosts/octal.nix
+            ./programs/hyprland
             ./home.nix
             nixvim.homeModules.nixvim
             catppuccin.homeModules.catppuccin
@@ -115,6 +117,7 @@
           pkgs = pkgsX86;
           modules = [
             ./programs/accounts/hao.nix
+            ./programs/hyprland
             ./home.nix
             nixvim.homeModules.nixvim
             catppuccin.homeModules.catppuccin

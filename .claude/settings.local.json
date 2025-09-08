@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cargo:*)"
+      "Bash(cargo:*)",
+      "Bash(nix show-config:*)",
+      "Bash(nix config:*)"
     ],
     "deny": []
   }
