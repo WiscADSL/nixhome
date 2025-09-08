@@ -13,6 +13,8 @@
     catppuccin.url = "github:catppuccin/nix";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     nur.url = "github:nix-community/nur";
+    hyprshell.url = "github:H3rmt/hyprshell?ref=hyprshell-release";
+    hyprshell.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
     { nixpkgs
@@ -21,8 +23,9 @@
     , vscode-server
     , nur
     , catppuccin
+    , hyprshell
     , ...
-    }:
+    } @ inputs:
     let
       pkgsX86 = import nixpkgs {
         system = "x86_64-linux";
@@ -95,6 +98,7 @@
             nixvim.homeModules.nixvim
             catppuccin.homeModules.catppuccin
           ];
+          extraSpecialArgs = { inherit inputs; };
         };
         "aoli@octal" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsX86;
@@ -105,6 +109,7 @@
             nixvim.homeModules.nixvim
             catppuccin.homeModules.catppuccin
           ];
+          extraSpecialArgs = { inherit inputs; };
         };
         "hao@linux" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsX86;
@@ -114,6 +119,7 @@
             nixvim.homeModules.nixvim
             catppuccin.homeModules.catppuccin
           ];
+          extraSpecialArgs = { inherit inputs; };
         };
         "aoli@darwin" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsArm;
