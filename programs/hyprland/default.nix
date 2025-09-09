@@ -81,6 +81,9 @@
       input = {
         kb_options = "ctrl:nocaps";
         follow_mouse = 2;
+        touchpad = {
+          natural_scroll = true;
+        };
       };
       general = {
         gaps_in = 0;
