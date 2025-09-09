@@ -125,13 +125,13 @@
 
 
   # https://wiki.nixos.org/wiki/NVIDIA
-  hardware.graphics.enable = withNvidia;
+  hardware.graphics.enable = true;
   services.xserver.videoDrivers =
     if withNvidia
       then [ "nvidia" ]
     else [ ];
   hardware.nvidia.open = false;
-  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.modesetting.enable = withNvidia;
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
