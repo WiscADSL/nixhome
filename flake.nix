@@ -113,6 +113,17 @@
           ];
           extraSpecialArgs = { inherit inputs; };
         };
+        "aoli@jex" = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsX86;
+          modules = [
+            ./programs/accounts/aoli.nix
+            ./programs/hyprland
+            ./home.nix
+            nixvim.homeModules.nixvim
+            catppuccin.homeModules.catppuccin
+          ];
+          extraSpecialArgs = { inherit inputs; };
+        };
         "hao@linux" = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsX86;
           modules = [
