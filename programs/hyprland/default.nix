@@ -46,18 +46,23 @@
       settings = {
         general = {
           after_sleep_cmd = "hyprctl dispatch dpms on";
+          before_sleep_cmd = "hyprlock";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
         };
         listener = [
           {
-            timeout = 300;
+            timeout = 120;  # Reduce screen lock timeout for battery saving
             on-timeout = "hyprlock";
           }
           {
-            timeout = 330;
+            timeout = 150;  # Turn off display sooner
             on-timeout = "hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
+          }
+          {
+            timeout = 600;  # Suspend after 10 minutes
+            on-timeout = "systemctl suspend";
           }
         ];
       };
@@ -74,6 +79,21 @@
       decoration = {
         shadow.enabled = false;
         blur.enabled = false;
+        rounding = 0;         # Disable rounding for performance
+      };
+      animations = {
+        enabled = false;      # Disable animations for battery saving
+      };
+      misc = {
+        vfr = true;           # Variable refresh rate
+        vrr = 1;              # Variable refresh rate on fullscreen
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        always_follow_on_dnd = false;
+        layers_hog_keyboard_focus = false;
+        animate_manual_resizes = false;
+        animate_mouse_windowdragging = false;
+        disable_autoreload = true;
       };
       xwayland = {
         force_zero_scaling = true;

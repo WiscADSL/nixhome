@@ -3,7 +3,8 @@
     "allow": [
       "Bash(cargo:*)",
       "Bash(nix show-config:*)",
-      "Bash(nix config:*)"
+      "Bash(nix config:*)",
+      "Bash(hostnamectl:*)"
     ],
     "deny": []
   }
