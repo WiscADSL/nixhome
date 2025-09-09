@@ -118,6 +118,7 @@
           modules = [
             ./programs/accounts/aoli.nix
             ./programs/hyprland
+            ./programs/hosts/jex.nix
             ./home.nix
             nixvim.homeModules.nixvim
             catppuccin.homeModules.catppuccin

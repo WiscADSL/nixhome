@@ -4,7 +4,6 @@
     ./waybar.nix
     ./kitty.nix
     ./hyprpaper.nix
-    ./hyprshell.nix
   ];
   home.packages = with pkgs; [
     kitty
