@@ -1,6 +1,4 @@
 { lib, pkgs, ... }: {
-  # Disable Atuin for hao (overrides default enable in programs/atuin)
-  programs.atuin.enable = lib.mkForce false;
   programs.tmux = {
     shell = "${pkgs.fish}/bin/fish";
   };
@@ -23,7 +21,6 @@
     cargo-edit
     cargo-insta
     uv
-    (llama-cpp.override { cudaSupport = true; })
     samply
     ripgrep
   ];

@@ -5,10 +5,6 @@
 , withNvidia ? false
 , ...
 }: {
-  imports = [
-    ./hyprland.nix
-  ];
-
   boot.kernelPackages = pkgs.lib.mkDefault pkgs.linuxPackages_latest;
   boot.kernel.sysctl."kernel.yama.ptrace_scope" = 0;
   virtualisation.containers.enable = true;
@@ -47,17 +43,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = pkgs.lib.mkDefault "America/New_York";
+  time.timeZone = pkgs.lib.mkDefault "America/Chicago";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -72,71 +62,6 @@
     LC_PAPER = "en_US.UTF-8";
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
-  };
-
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5.ignoreUserConfig = false; # see modules/home/fcitx5.nix
-    fcitx5.waylandFrontend = true; # NOT to set GTK_IM_MODULE=fcitx
-    fcitx5.addons = with pkgs; [
-      fcitx5-configtool
-      # fcitx5-chinese-addons
-      (fcitx5-rime.override {
-        rimeDataPkgs = with pkgs.nur.repos.linyinfeng.rimePackages; withRimeDeps [ rime-ice ];
-      })
-      fcitx5-gtk
-    ];
-  };
-
-  fonts = {
-    packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      source-code-pro
-      hack-font
-      jetbrains-mono
-    ];
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  services.pulseaudio.enable = false;
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
-
-
-  # https://wiki.nixos.org/wiki/NVIDIA
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers =
-    if withNvidia
-      then [ "nvidia" ]
-    else [ ];
-  hardware.nvidia.open = false;
-  hardware.nvidia.modesetting.enable = withNvidia;
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  programs.steam = {
-    enable = withNvidia;
   };
 
   programs.nix-ld = {
@@ -176,6 +101,8 @@
 
   # List services that you want to enable:
 
+  services.dbus.implementation = "broker";
+
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
@@ -186,11 +113,6 @@
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
 
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
-
   nix.settings.experimental-features = pkgs.lib.mkForce [ "nix-command" "flakes" ];
   nix.settings.substituters = [
     "https://nix-community.cachix.org"
@@ -199,10 +121,10 @@
     # Compare to the key published at https://nix-community.org/cache
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
   ];
-  nix.optimise.automatic = true;
+  nix.optimise.automatic = false;
   nix.optimise.dates = [ "03:45" ]; 
   nix.gc = {
-    automatic = true;
+    automatic = false;
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
