@@ -10,6 +10,7 @@ User group: slack channel `#adsl-ssd-users` in UW Madison Systems Group.
 
 1. Be a reasonable person, coordinate before using a lot of resources.
 2. Unless specifically requested, DO NOT DEVELOP on the machine, it is used for BENCHMARK only. 
+3. Do not store anything important on the machine, it can be deleted anytime without notice. Only configurations in this repo are persisted across reinstall. 
 
 ## Add a new user
 
@@ -17,7 +18,7 @@ User group: slack channel `#adsl-ssd-users` in UW Madison Systems Group.
 
 2. Add your user configuration to `hosts/common/[your-username].nix`
 
-3. If you'd like to use home-manager, add your configuration to `programs/accounts/[your-username].nix`
+3. If you'd like to use home-manager, add your home configuration to `programs/accounts/[your-username].nix`
 
 4. Send the pull request and ping the admins (as of Sep 2025, @XiangpengHao, @MikeWalrus) for review.
 
