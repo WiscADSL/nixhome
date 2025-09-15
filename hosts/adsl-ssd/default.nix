@@ -6,6 +6,7 @@
     })
     ../common/hao.nix
     ../common/ljx.nix
+    ../common/proteet.nix
     ./hardware-configuration.nix
   ];
   networking.hostName = "adsl-ssd";
