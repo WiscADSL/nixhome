@@ -61,4 +61,8 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 2201 ];
+
+  security.pam.loginLimits = [
+    { domain = "proteet"; type = "soft"; item = "memlock"; value = "unlimited"; }
+  ];
 }
