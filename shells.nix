@@ -1,8 +1,7 @@
-pkgs:
-with pkgs; {
+pkgs: with pkgs; {
   default = mkShellNoCC {
     buildInputs = [
-      nixfmt-rfc-style
+      nixfmt-tree
     ];
   };
 
@@ -56,14 +55,12 @@ with pkgs; {
     ];
   };
 
-  clojure =
-    mkShellNoCC
-      {
-        buildInputs = [
-          leiningen
-          gnuplot
-          graphviz
-          jdk11
-        ];
-      };
+  clojure = mkShellNoCC {
+    buildInputs = [
+      leiningen
+      gnuplot
+      graphviz
+      jdk11
+    ];
+  };
 }

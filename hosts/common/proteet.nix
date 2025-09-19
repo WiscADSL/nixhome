@@ -1,7 +1,8 @@
 {
   pkgs,
   ...
-}: {
+}:
+{
   programs.bash.enable = true;
   users.users.proteet = {
     isNormalUser = true;

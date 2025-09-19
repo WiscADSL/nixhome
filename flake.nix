@@ -15,14 +15,15 @@
     nur.url = "github:nix-community/nur";
   };
   outputs =
-    { nixpkgs
-    , home-manager
-    , nixvim
-    , vscode-server
-    , nur
-    , catppuccin
-    , ...
-    } @ inputs:
+    {
+      nixpkgs,
+      home-manager,
+      nixvim,
+      vscode-server,
+      nur,
+      catppuccin,
+      ...
+    }@inputs:
     let
       pkgsX86 = import nixpkgs {
         system = "x86_64-linux";
@@ -38,15 +39,13 @@
       packages = home-manager.packages; # Support bootstrapping Home Manager.
 
       nixosConfigurations = {
-        "adsl-ssd" =
-          nixpkgs.lib.nixosSystem
-            {
-              modules = [
-                nur.modules.nixos.default
-                vscode-server.nixosModules.default
-                ./hosts/adsl-ssd
-              ];
-            };
+        "adsl-ssd" = nixpkgs.lib.nixosSystem {
+          modules = [
+            nur.modules.nixos.default
+            vscode-server.nixosModules.default
+            ./hosts/adsl-ssd
+          ];
+        };
       };
 
       homeConfigurations = {

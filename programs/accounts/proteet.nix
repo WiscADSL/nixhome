@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   programs.tmux = {
     shell = "${pkgs.bash}/bin/bash";
   };

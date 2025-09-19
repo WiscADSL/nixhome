@@ -1,10 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs
-, withNvidia ? false
-, ...
-}: {
+{
+  pkgs,
+  withNvidia ? false,
+  ...
+}:
+{
   boot.kernelPackages = pkgs.lib.mkDefault pkgs.linuxPackages_latest;
   boot.kernel.sysctl."kernel.yama.ptrace_scope" = 0;
   virtualisation.containers.enable = true;
@@ -33,7 +35,7 @@
       "user" = {
         sliceConfig = {
           ManagedOOMMemoryPressure = "kill";
-          ManagedOOMMemoryPressureLimit = "30%"; 
+          ManagedOOMMemoryPressureLimit = "30%";
         };
       };
     };
@@ -113,7 +115,10 @@
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
 
-  nix.settings.experimental-features = pkgs.lib.mkForce [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = pkgs.lib.mkForce [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.substituters = [
     "https://nix-community.cachix.org"
   ];
@@ -122,7 +127,7 @@
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
   ];
   nix.optimise.automatic = false;
-  nix.optimise.dates = [ "03:45" ]; 
+  nix.optimise.dates = [ "03:45" ];
   nix.gc = {
     automatic = false;
     dates = "weekly";

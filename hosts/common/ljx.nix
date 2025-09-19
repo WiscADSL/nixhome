@@ -1,7 +1,8 @@
 {
   pkgs,
   ...
-}: {
+}:
+{
   programs.fish.enable = true;
   users.users.ljx = {
     isNormalUser = true;

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     (import ../common {
       inherit pkgs;
@@ -52,21 +53,36 @@
         "/dev/nvme4n1:/dev/nvme4n1"
       ];
     };
-    networkConfig = {Private = false;};
+    networkConfig = {
+      Private = false;
+    };
   };
   systemd.services."systemd-nspawn@archlinux-1" = {
     enable = true;
-    requiredBy = ["machines.target"];
+    requiredBy = [ "machines.target" ];
     overrideStrategy = "asDropin";
     environment = {
       SYSTEMD_SECCOMP = "0";
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 2201 8000 ];
+  networking.firewall.allowedTCPPorts = [
+    2201
+    8000
+  ];
 
   security.pam.loginLimits = [
-    { domain = "proteet"; type = "soft"; item = "memlock"; value = "unlimited"; }
-    { domain = "proteet"; type = "hard"; item = "memlock"; value = "unlimited"; }
+    {
+      domain = "proteet";
+      type = "soft";
+      item = "memlock";
+      value = "unlimited";
+    }
+    {
+      domain = "proteet";
+      type = "hard";
+      item = "memlock";
+      value = "unlimited";
+    }
   ];
 }
