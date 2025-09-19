@@ -25,6 +25,8 @@
     pkgs.linuxPackages_latest.perf
   ];
 
+  programs.mosh.enable = true;
+
   systemd.targets.machines.enable = true;
   systemd.nspawn."archlinux-1" = {
     enable = true;
