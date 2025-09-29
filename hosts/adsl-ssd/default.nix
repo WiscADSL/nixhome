@@ -7,6 +7,7 @@
     })
     ../common/hao.nix
     ../common/ljx.nix
+    ../common/suyan.nix
     ../common/proteet.nix
     ./hardware-configuration.nix
   ];
@@ -80,6 +81,18 @@
     }
     {
       domain = "proteet";
+      type = "hard";
+      item = "memlock";
+      value = "unlimited";
+    }
+    {
+      domain = "ljx";
+      type = "soft";
+      item = "memlock";
+      value = "unlimited";
+    }
+    {
+      domain = "ljx";
       type = "hard";
       item = "memlock";
       value = "unlimited";
