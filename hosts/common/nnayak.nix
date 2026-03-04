@@ -3,6 +3,7 @@
   programs.bash.enable = true;
   users.users.nnayak = {
     isNormalUser = true;
+    uid = 1007;
     shell = pkgs.bash;
     description = "Nikhil Nayak";
     extraGroups = [
