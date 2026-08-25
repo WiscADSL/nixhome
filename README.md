@@ -20,7 +20,7 @@ User group: slack channel `#adsl-ssd-users` in UW Madison Systems Group.
 
 3. If you'd like to use home-manager, add your home configuration to `programs/accounts/[your-username].nix`
 
-4. Send the pull request and ping the admins (as of Sep 2025, @XiangpengHao, @MikeWalrus) for review.
+4. Send the pull request and ping the admins (@MikeWalrus) for review.
 
 ## Fresh setup 
 
