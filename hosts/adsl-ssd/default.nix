@@ -22,6 +22,73 @@
 
   programs.zsh.enable = true;
 
+ nixpkgs.overlays = [
+    (final: prev: {
+      llama-cpp = (prev.llama-cpp.override {
+        cudaSupport = false;
+        rocmSupport = false;
+        metalSupport = false;
+        blasSupport = true;
+      }).overrideAttrs (oldAttrs: rec {
+        version = "8198";
+      src = pkgs.fetchFromGitHub {
+        owner = "ggml-org";
+        repo = "llama.cpp";
+        tag = "b${version}";
+        hash = "sha256-x+3tVC42Nnj1AJgorZBcIf9N/wEi/Yn/ba17xAuZUCk=";
+        leaveDotGit = true;
+        postFetch = ''
+          git -C "$out" rev-parse --short HEAD > $out/COMMIT
+          find "$out" -name .git -print0 | xargs -0 rm -rf
+        '';
+      };
+      # Enable native CPU optimizations (AVX, AVX2, etc.)
+      cmakeFlags = (oldAttrs.cmakeFlags or []) ++ [
+        "-DGGML_NATIVE=ON"
+      ];
+      # Disable Nix's march=native stripping
+      preConfigure = ''
+        export NIX_ENFORCE_NO_NATIVE=0
+        ${oldAttrs.preConfigure or ""}
+      '';
+      });
+    })
+  ];
+
+services.llama-cpp = {
+	enable = false;
+	model = "/srv/models/unsloth_Qwen3.5-35B-A3B-GGUF_Qwen3.5-35B-A3B-Q4_K_M.gguf";
+	port = 11434;
+	extraFlags = [ "--chat-template-kwargs" "{ \"reasoning_effort\" : \"low\" }" "--reasoning-budget" "0" ];
+};
+
+  services.ollama = {
+	  enable = false;
+	  # Optional: preload models, see https://ollama.com/library
+	  loadModels = [ "qwen3.5:9b" "qwen3.5:35b-a3b-q4_K_M" ];
+          port = 11434;
+          host = "127.0.0.1";
+  };
+
+  services.nginx = {
+    enable = false;
+    proxyTimeout = "1000s";
+
+virtualHosts."_" = {
+  listen = [{ addr = "0.0.0.0"; port = 44354; }];
+
+  locations."/" = {
+    recommendedProxySettings = true;
+    proxyPass = "http://127.0.0.1:11434";
+
+    extraConfig = ''
+      auth_basic "Restricted";
+      auth_basic_user_file /var/lib/nginx/ollama.htpasswd;
+    '';
+  };
+};
+  };
+
   environment.systemPackages = [
     pkgs.btrfs-progs
     pkgs.xfsprogs
@@ -30,6 +97,7 @@
     pkgs.fio
     pkgs.linuxPackages_latest.perf
     pkgs.glibc
+    pkgs.llama-cpp
   ];
 
   environment.enableDebugInfo = true;
@@ -77,6 +145,7 @@
   networking.firewall.allowedTCPPorts = [
     2201
     8000
+    44354
   ];
 
   virtualisation.docker.enable = true;
