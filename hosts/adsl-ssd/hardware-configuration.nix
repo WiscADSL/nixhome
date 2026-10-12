@@ -24,6 +24,7 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.blacklistedKernelModules = [ "mt7925e" "mt7925_common" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/NIXROOT";
