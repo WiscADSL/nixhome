@@ -112,8 +112,8 @@
     settings.KbdInteractiveAuthentication = false;
   };
 
-  services.tailscale.enable = true;
-  services.tailscale.useRoutingFeatures = "both";
+  # services.tailscale.enable = true;
+  # services.tailscale.useRoutingFeatures = "both";
 
   nix.settings.experimental-features = pkgs.lib.mkForce [
     "nix-command"
