@@ -5,13 +5,8 @@
       inherit pkgs;
       withNvidia = true;
     })
-    ../common/hao.nix
     ../common/ljx.nix
     ../common/suyan.nix
-    ../common/proteet.nix
-    ../common/zixuan.nix
-    ../common/kaiweitu.nix
-    ../common/nnayak.nix
     ../common/cgw.nix
     ./hardware-configuration.nix
   ];
