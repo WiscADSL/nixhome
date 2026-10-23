@@ -8,6 +8,7 @@
     ../common/ljx.nix
     ../common/suyan.nix
     ../common/cgw.nix
+    ../common/ctj.nix
     ./hardware-configuration.nix
   ];
   networking.hostName = "adsl-ssd";
